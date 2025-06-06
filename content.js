@@ -56,24 +56,8 @@ function addButton() {
     // Add to body
     document.body.appendChild(tooltip);
     
-    // Position tooltip above the element
-    const linkRect = htmlSpan.getBoundingClientRect();
-    tooltip.style.position = 'absolute';
-    tooltip.style.left = `${linkRect.left + window.scrollX}px`;
-    tooltip.style.top = `${linkRect.top + window.scrollY - 20}px`;
-    tooltip.style.display = 'none';
-    
     // Add hover effect
-    htmlSpan.addEventListener('mouseenter', () => {
-        tooltip.style.display = 'block';
-    });
-    
-    htmlSpan.addEventListener('mouseleave', () => {
-        tooltip.style.display = 'none';
-    });
-
-    // Add hover effect
-    htmlSpan.addEventListener('mouseenter', () => {
+    htmlSpan.addEventListener('mouseenter', (e) => {
         tooltip.style.display = 'block';
         tooltip.style.left = `${e.clientX + 10}px`;
         tooltip.style.top = `${e.clientY - 20}px`;
@@ -171,6 +155,10 @@ function addButton() {
         }
     });
 
+
+    // Add both spans after the target element
+    targetElement.parentNode.insertBefore(htmlSpan, targetElement.nextSibling);
+    targetElement.parentNode.insertBefore(branchnameSpan, htmlSpan.nextSibling);
 
 
     // Add click handler
