@@ -21,13 +21,39 @@ function addButton() {
     htmlSpan.style.transition = 'background-color 0.2s ease';
     htmlSpan.style.color = '#FFF';
     
+    // Create tooltip using Azure DevOps native styling
+    const tooltip = document.createElement('div');
+    tooltip.className = 'bolt-tooltip bolt-callout absolute flex-row';
+    tooltip.id = '__bolt-tooltip-' + Date.now();
+    tooltip.role = 'tooltip';
+    tooltip.tabIndex = -1;
+    
+    // Create tooltip content
+    const content = document.createElement('div');
+    content.className = 'bolt-callout-content';
+    content.role = 'tooltip';
+    
+    const tooltipContent = document.createElement('div');
+    tooltipContent.className = 'bolt-tooltip-content body-m';
+    tooltipContent.textContent = 'Link';
+    
+    content.appendChild(tooltipContent);
+    tooltip.appendChild(content);
+    
+    // Add to body instead of span
+    document.body.appendChild(tooltip);
+
     // Add hover effect
-    htmlSpan.addEventListener('mouseenter', () => {
+    htmlSpan.addEventListener('mouseenter', (e) => {
         htmlSpan.style.backgroundColor = 'rgba(0,0,0,0.05)';
+        tooltip.style.display = 'block';
+        tooltip.style.left = `${e.clientX + 10}px`;
+        tooltip.style.top = `${e.clientY - 20}px`;
     });
     
     htmlSpan.addEventListener('mouseleave', () => {
         htmlSpan.style.backgroundColor = 'transparent';
+        tooltip.style.display = 'none';
     });
 
     // Create the branchname span
