@@ -57,10 +57,14 @@ function addButton() {
     document.body.appendChild(tooltip);
     
     // Add hover effect
-    htmlSpan.addEventListener('mouseenter', (e) => {
+    htmlSpan.addEventListener('mouseenter', () => {
+        // Get the link span's position
+        const linkRect = htmlSpan.getBoundingClientRect();
         tooltip.style.display = 'block';
-        tooltip.style.left = `${e.clientX + 10}px`;
-        tooltip.style.top = `${e.clientY - 20}px`;
+        tooltip.style.position = 'fixed';
+        tooltip.style.left = `${linkRect.left}px`;
+        tooltip.style.top = `${linkRect.top - 20}px`;
+        tooltip.style.zIndex = '9999';
     });
     
     htmlSpan.addEventListener('mouseleave', () => {
