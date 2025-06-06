@@ -58,12 +58,18 @@ function addButton() {
     
     // Add hover effect
     htmlSpan.addEventListener('mouseenter', () => {
-        // Get the link span's position
-        const linkRect = htmlSpan.getBoundingClientRect();
+        // Get the link span's position using offsetLeft/offsetTop
+        const linkOffsetLeft = htmlSpan.offsetLeft;
+        const linkOffsetTop = htmlSpan.offsetTop;
+        
+        // Debug logging
+        console.log('Link position:', linkOffsetLeft, linkOffsetTop);
+        console.log('Tooltip position:', linkOffsetLeft, linkOffsetTop - 20);
+        
         tooltip.style.display = 'block';
-        tooltip.style.position = 'fixed';
-        tooltip.style.left = `${linkRect.left}px`;
-        tooltip.style.top = `${linkRect.top - 20}px`;
+        tooltip.style.position = 'absolute';
+        tooltip.style.left = `${linkOffsetLeft}px`;
+        tooltip.style.top = `${linkOffsetTop - 20}px`;
         tooltip.style.zIndex = '9999';
     });
     
