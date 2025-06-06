@@ -76,6 +76,48 @@ function addButton() {
         tooltip.style.display = 'none';
     });
 
+    // Create branch tooltip using Azure DevOps native styling
+    const branchTooltip = document.createElement('div');
+    branchTooltip.className = 'bolt-tooltip bolt-callout bolt-callout--dismissable bolt-callout--dismissable--hover bolt-callout--dismissable--hover--below';
+    branchTooltip.id = '__bolt-branch-tooltip-' + Date.now();
+    branchTooltip.role = 'tooltip';
+    branchTooltip.tabIndex = -1;
+    
+    // Create branch tooltip content
+    const branchContent = document.createElement('div');
+    branchContent.className = 'bolt-callout-content';
+    branchContent.role = 'tooltip';
+    
+    const branchTooltipContent = document.createElement('div');
+    branchTooltipContent.className = 'bolt-tooltip-content body-m';
+    branchTooltipContent.textContent = 'Branch Name';
+    
+    branchContent.appendChild(branchTooltipContent);
+    branchTooltip.appendChild(branchContent);
+    
+    // Add to body
+    document.body.appendChild(branchTooltip);
+    
+    // Add hover effect for branch tooltip
+    branchnameSpan.addEventListener('mouseenter', () => {
+        // Get the branch span's position using getBoundingClientRect()
+        const branchRect = branchnameSpan.getBoundingClientRect();
+        
+        // Debug logging
+        console.log('Branch position:', branchRect.left, branchRect.top);
+        console.log('Branch tooltip position:', branchRect.left, branchRect.top - 20);
+        
+        branchTooltip.style.display = 'block';
+        branchTooltip.style.position = 'fixed';
+        branchTooltip.style.left = `${branchRect.left}px`;
+        branchTooltip.style.top = `${branchRect.top - 40}px`;
+        branchTooltip.style.zIndex = '9999';
+    });
+    
+    branchnameSpan.addEventListener('mouseleave', () => {
+        branchTooltip.style.display = 'none';
+    });
+
     // Create the branchname span
     const branchnameSpan = document.createElement('span');
     branchnameSpan.textContent = '📦';
