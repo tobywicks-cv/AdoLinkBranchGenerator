@@ -10,10 +10,16 @@ function addButton() {
     const htmlSpan = document.createElement('span');
     htmlSpan.textContent = '🔗';
     htmlSpan.style.marginLeft = '10px';
-    htmlSpan.style.padding = '8px 12px';
+    htmlSpan.style.padding = '4px 8px';
+    htmlSpan.style.height = '1.2em';
+    htmlSpan.style.lineHeight = '1.2em';
+    htmlSpan.style.display = 'inline-flex';
+    htmlSpan.style.alignItems = 'center';
+    htmlSpan.style.justifyContent = 'center';
     htmlSpan.style.borderRadius = '4px';
     htmlSpan.style.cursor = 'pointer';
     htmlSpan.style.transition = 'background-color 0.2s ease';
+    htmlSpan.style.color = '#FFF';
     
     // Add hover effect
     htmlSpan.addEventListener('mouseenter', () => {
@@ -28,10 +34,16 @@ function addButton() {
     const branchnameSpan = document.createElement('span');
     branchnameSpan.textContent = '📦';
     branchnameSpan.style.marginLeft = '10px';
-    branchnameSpan.style.padding = '8px 12px';
+    branchnameSpan.style.padding = '4px 8px';
+    branchnameSpan.style.height = '1.2em';
+    branchnameSpan.style.lineHeight = '1.2em';
+    branchnameSpan.style.display = 'inline-flex';
+    branchnameSpan.style.alignItems = 'center';
+    branchnameSpan.style.justifyContent = 'center';
     branchnameSpan.style.borderRadius = '4px';
     branchnameSpan.style.cursor = 'pointer';
     branchnameSpan.style.transition = 'background-color 0.2s ease';
+    branchnameSpan.style.color = '#FFF';
     
     // Add hover effect
     branchnameSpan.addEventListener('mouseenter', () => {
