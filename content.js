@@ -45,7 +45,9 @@ function addButton() {
         // Determine prefix based on work item type
         const isDefect = document.querySelector('span[aria-label="Defect"]') !== null;
         const isRegression = document.querySelector('span[aria-label="Regression"]') !== null;
-        const prefix = (isDefect || isRegression) ? 'bugfix' : 'feature';
+        const isSupport = document.querySelector('span[aria-label="Support"]') !== null;
+        
+        const prefix = isSupport ? 'hotfix' : (isDefect || isRegression) ? 'bugfix' : 'feature';
         
         // Create branch name format
         const branchName = `${prefix}/${workItemNumber}-${currentTitle.toLowerCase().replace(/[^a-z0-9]+/g, '-')}`;
