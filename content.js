@@ -32,8 +32,18 @@ function addButton() {
 
     // Add click handler for markdown button
     markdownButton.addEventListener('click', async () => {
-        // Create markdown link using the target element's title and href
-        const markdown = `[${targetElement.textContent.trim()}](${targetElement.href})`;
+        // Get the title from the input field
+        const titleInput = document.querySelector('input[aria-label="Title field"]');
+        const currentTitle = titleInput?.value || '';
+        
+        // Extract work item number from href
+        const workItemNumber = targetElement.href.split('/').pop();
+        
+        // Create the full title with work item number
+        const title = `${workItemNumber} - ${currentTitle}`.trim() || 'Untitled';
+        
+        // Create markdown link
+        const markdown = `[${title}](${targetElement.href})`;
         
         try {
             // Copy to clipboard
