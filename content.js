@@ -44,8 +44,7 @@ function addButton() {
     document.body.appendChild(tooltip);
 
     // Add hover effect
-    htmlSpan.addEventListener('mouseenter', (e) => {
-        htmlSpan.style.backgroundColor = 'rgba(0,0,0,0.05)';
+    htmlSpan.addEventListener('mouseenter', () => {
         tooltip.style.display = 'block';
         tooltip.style.left = `${e.clientX + 10}px`;
         tooltip.style.top = `${e.clientY - 20}px`;
@@ -70,14 +69,7 @@ function addButton() {
     branchnameSpan.style.transition = 'background-color 0.2s ease';
     branchnameSpan.style.color = '#FFF';
     
-    // Add hover effect
-    branchnameSpan.addEventListener('mouseenter', () => {
-        branchnameSpan.style.backgroundColor = 'rgba(0,0,0,0.05)';
-    });
-    
-    branchnameSpan.addEventListener('mouseleave', () => {
-        branchnameSpan.style.backgroundColor = 'transparent';
-    });
+
 
     // Add click handler for branchname span
     branchnameSpan.addEventListener('click', async () => {
