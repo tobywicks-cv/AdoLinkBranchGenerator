@@ -52,7 +52,6 @@ function addButton() {
     });
     
     htmlSpan.addEventListener('mouseleave', () => {
-        htmlSpan.style.backgroundColor = 'transparent';
         tooltip.style.display = 'none';
     });
 
@@ -114,12 +113,16 @@ function addButton() {
             // Copy to clipboard
             await navigator.clipboard.writeText(branchName);
             
-            // Update span text to show success icon
+            // Update span text and background to show success
             branchnameSpan.textContent = '✓';
+            branchnameSpan.style.backgroundColor = '#4CAF50';
+            branchnameSpan.style.color = '#fff';
             
-            // Reset span text after 2 seconds
+            // Reset span text and background after 2 seconds
             setTimeout(() => {
                 branchnameSpan.textContent = '📦';
+                branchnameSpan.style.backgroundColor = 'transparent';
+                branchnameSpan.style.color = '#FFF';
             }, 2000);
         } catch (err) {
             console.error('Failed to copy to clipboard:', err);
@@ -148,12 +151,16 @@ function addButton() {
             // Copy to clipboard
             await navigator.clipboard.writeText(html);
             
-            // Update span text to show success icon
+            // Update span text and background to show success
             htmlSpan.textContent = '✓';
+            htmlSpan.style.backgroundColor = '#4CAF50';
+            htmlSpan.style.color = '#fff';
             
-            // Reset span text after 2 seconds
+            // Reset span text and background after 2 seconds
             setTimeout(() => {
                 htmlSpan.textContent = '🔗';
+                htmlSpan.style.backgroundColor = 'transparent';
+                htmlSpan.style.color = '#FFF';
             }, 2000);
         } catch (err) {
             console.error('Failed to copy to clipboard:', err);
