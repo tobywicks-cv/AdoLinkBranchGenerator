@@ -6,32 +6,44 @@ function addButton() {
         return;
     }
 
-    // Create the HTML button
-    const htmlButton = document.createElement('button');
-    htmlButton.textContent = '🔗';
-    htmlButton.style.marginLeft = '10px';
-    htmlButton.style.padding = '10px 20px';
-    htmlButton.style.backgroundColor = '#4CAF50';
-    htmlButton.style.color = 'white';
-    htmlButton.style.border = 'none';
-    htmlButton.style.borderRadius = '4px';
-    htmlButton.style.cursor = 'pointer';
-    htmlButton.style.boxShadow = '0 2px 4px rgba(0,0,0,0.2)';
+    // Create the HTML span
+    const htmlSpan = document.createElement('span');
+    htmlSpan.textContent = '🔗';
+    htmlSpan.style.marginLeft = '10px';
+    htmlSpan.style.padding = '8px 12px';
+    htmlSpan.style.borderRadius = '4px';
+    htmlSpan.style.cursor = 'pointer';
+    htmlSpan.style.transition = 'background-color 0.2s ease';
+    
+    // Add hover effect
+    htmlSpan.addEventListener('mouseenter', () => {
+        htmlSpan.style.backgroundColor = 'rgba(0,0,0,0.05)';
+    });
+    
+    htmlSpan.addEventListener('mouseleave', () => {
+        htmlSpan.style.backgroundColor = 'transparent';
+    });
 
-    // Create the branchname button
-    const branchnameButton = document.createElement('button');
-    branchnameButton.textContent = '📦';
-    branchnameButton.style.marginLeft = '10px';
-    branchnameButton.style.padding = '10px 20px';
-    branchnameButton.style.backgroundColor = '#FF9800';
-    branchnameButton.style.color = 'white';
-    branchnameButton.style.border = 'none';
-    branchnameButton.style.borderRadius = '4px';
-    branchnameButton.style.cursor = 'pointer';
-    branchnameButton.style.boxShadow = '0 2px 4px rgba(0,0,0,0.2)';
+    // Create the branchname span
+    const branchnameSpan = document.createElement('span');
+    branchnameSpan.textContent = '📦';
+    branchnameSpan.style.marginLeft = '10px';
+    branchnameSpan.style.padding = '8px 12px';
+    branchnameSpan.style.borderRadius = '4px';
+    branchnameSpan.style.cursor = 'pointer';
+    branchnameSpan.style.transition = 'background-color 0.2s ease';
+    
+    // Add hover effect
+    branchnameSpan.addEventListener('mouseenter', () => {
+        branchnameSpan.style.backgroundColor = 'rgba(0,0,0,0.05)';
+    });
+    
+    branchnameSpan.addEventListener('mouseleave', () => {
+        branchnameSpan.style.backgroundColor = 'transparent';
+    });
 
-    // Add click handler for branchname button
-    branchnameButton.addEventListener('click', async () => {
+    // Add click handler for branchname span
+    branchnameSpan.addEventListener('click', async () => {
         // Get the title from the input field
         const titleInput = document.querySelector('input[aria-label="Title field"]');
         const currentTitle = titleInput?.value || '';
@@ -64,12 +76,12 @@ function addButton() {
             // Copy to clipboard
             await navigator.clipboard.writeText(branchName);
             
-            // Update button text to show success icon
-            branchnameButton.textContent = '✓';
+            // Update span text to show success icon
+            branchnameSpan.textContent = '✓';
             
-            // Reset button text after 2 seconds
+            // Reset span text after 2 seconds
             setTimeout(() => {
-                branchnameButton.textContent = '📦';
+                branchnameSpan.textContent = '📦';
             }, 2000);
         } catch (err) {
             console.error('Failed to copy to clipboard:', err);
@@ -80,7 +92,7 @@ function addButton() {
 
 
     // Add click handler
-    htmlButton.addEventListener('click', async () => {
+    htmlSpan.addEventListener('click', async () => {
         // Get the title from the input field
         const titleInput = document.querySelector('input[aria-label="Title field"]');
         const currentTitle = titleInput?.value || '';
@@ -98,12 +110,12 @@ function addButton() {
             // Copy to clipboard
             await navigator.clipboard.writeText(html);
             
-            // Update button text to show success icon
-            htmlButton.textContent = '✓';
+            // Update span text to show success icon
+            htmlSpan.textContent = '✓';
             
-            // Reset button text after 2 seconds
+            // Reset span text after 2 seconds
             setTimeout(() => {
-                htmlButton.textContent = '🔗';
+                htmlSpan.textContent = '🔗';
             }, 2000);
         } catch (err) {
             console.error('Failed to copy to clipboard:', err);
@@ -111,9 +123,9 @@ function addButton() {
         }
     });
 
-    // Add both buttons after the target element
-    targetElement.parentNode.insertBefore(htmlButton, targetElement.nextSibling);
-    targetElement.parentNode.insertBefore(branchnameButton, htmlButton.nextSibling);
+    // Add both spans after the target element
+    targetElement.parentNode.insertBefore(htmlSpan, targetElement.nextSibling);
+    targetElement.parentNode.insertBefore(branchnameSpan, htmlSpan.nextSibling);
 }
 
 // Wait for DOM to be fully loaded and add a small delay to ensure the element is loaded
