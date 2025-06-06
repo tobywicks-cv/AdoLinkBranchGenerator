@@ -25,7 +25,7 @@ function addButton() {
         const title = titleInput?.value || 'Untitled';
         
         // Create the HTML code
-        const html = `<a href="${targetElement.href}" style="color:#0078D7;text-decoration:none;margin-left:10px;display:inline-block;padding:5px 10px;border-radius:4px;background-color:#f4f4f4">${title}</a>`;
+        const html = `<a href="${targetElement.href}">${title}</a>`;
         
         try {
             // Copy to clipboard
