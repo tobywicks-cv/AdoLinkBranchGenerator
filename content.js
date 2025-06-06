@@ -22,7 +22,13 @@ function addButton() {
     button.addEventListener('click', async () => {
         // Get the title from the input field
         const titleInput = document.querySelector('input[aria-label="Title field"]');
-        const title = titleInput?.value || 'Untitled';
+        const currentTitle = titleInput?.value || '';
+        
+        // Extract work item number from href
+        const workItemNumber = targetElement.href.split('/').pop();
+        
+        // Create the full title with work item number
+        const title = `${workItemNumber} - ${currentTitle}`.trim() || 'Untitled';
         
         // Create the HTML code
         const html = `<a href="${targetElement.href}">${title}</a>`;
