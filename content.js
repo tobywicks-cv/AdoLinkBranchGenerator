@@ -42,8 +42,12 @@ function addButton() {
         // Create the full title with work item number
         const title = `${workItemNumber} - ${currentTitle}`.trim() || 'Untitled';
         
+        // Determine prefix based on work item type
+        const isDefect = document.querySelector('span[aria-label="Defect"]') !== null;
+        const prefix = isDefect ? 'bugfix' : 'feature';
+        
         // Create branch name format
-        const branchName = `feature/${workItemNumber}-${currentTitle.toLowerCase().replace(/[^a-z0-9]+/g, '-')}`;
+        const branchName = `${prefix}/${workItemNumber}-${currentTitle.toLowerCase().replace(/[^a-z0-9]+/g, '-')}`;
         
         try {
             // Copy to clipboard
