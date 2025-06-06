@@ -1,8 +1,8 @@
 {
   "manifest_version": 3,
-  "name": "Page Button Extension",
+  "name": "Azure DevOps Link/Branch Generator",
   "version": "1.0",
-  "description": "Adds a button to the top-left of Azure DevOps pages",
+  "description": "Gives ADO super powers!",
   "permissions": ["activeTab"],
   "content_scripts": [
     {
