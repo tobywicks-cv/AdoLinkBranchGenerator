@@ -98,6 +98,22 @@ function addButton() {
     // Add to body
     document.body.appendChild(branchTooltip);
     
+    // Create the branchname span
+    const branchnameSpan = document.createElement('span');
+    branchnameSpan.textContent = '📦';
+    branchnameSpan.style.marginLeft = '0';
+    branchnameSpan.style.padding = '4px 8px';
+    branchnameSpan.style.height = '1.2em';
+    branchnameSpan.style.lineHeight = '1.2em';
+    branchnameSpan.style.display = 'inline-flex';
+    branchnameSpan.style.alignItems = 'center';
+    branchnameSpan.style.justifyContent = 'center';
+    branchnameSpan.style.borderRadius = '4px';
+    branchnameSpan.style.cursor = 'pointer';
+    branchnameSpan.style.transition = 'background-color 0.2s ease';
+    branchnameSpan.style.color = '#FFF';
+    
+
     // Add hover effect for branch tooltip
     branchnameSpan.addEventListener('mouseenter', () => {
         // Get the branch span's position using getBoundingClientRect()
@@ -117,22 +133,6 @@ function addButton() {
     branchnameSpan.addEventListener('mouseleave', () => {
         branchTooltip.style.display = 'none';
     });
-
-    // Create the branchname span
-    const branchnameSpan = document.createElement('span');
-    branchnameSpan.textContent = '📦';
-    branchnameSpan.style.marginLeft = '0';
-    branchnameSpan.style.padding = '4px 8px';
-    branchnameSpan.style.height = '1.2em';
-    branchnameSpan.style.lineHeight = '1.2em';
-    branchnameSpan.style.display = 'inline-flex';
-    branchnameSpan.style.alignItems = 'center';
-    branchnameSpan.style.justifyContent = 'center';
-    branchnameSpan.style.borderRadius = '4px';
-    branchnameSpan.style.cursor = 'pointer';
-    branchnameSpan.style.transition = 'background-color 0.2s ease';
-    branchnameSpan.style.color = '#FFF';
-    
 
 
     // Add click handler for branchname span
