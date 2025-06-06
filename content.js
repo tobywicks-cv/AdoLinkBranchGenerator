@@ -49,8 +49,16 @@ function addButton() {
         
         const prefix = isSupport ? 'hotfix' : (isDefect || isRegression) ? 'bugfix' : 'feature';
         
+        // Get team name from the input field
+        const teamInput = document.querySelector('input[aria-labelledby="__bolt--Area"]');
+        const teamName = teamInput?.value || '';
+        
+        // Extract the last part of the path and remove 'Team'
+        const teamPath = teamName.split('\\').pop(); // Split on backslash
+        const teamPart = teamPath.replace('Team', '').trim();
+        
         // Create branch name format
-        const branchName = `${prefix}/${workItemNumber}-${currentTitle.toLowerCase().replace(/[^a-z0-9]+/g, '-')}`;
+        const branchName = `${prefix}/${teamPart.toLowerCase().replace(/[^a-z0-9]+/g, '-')}/${workItemNumber}-${currentTitle.toLowerCase().replace(/[^a-z0-9]+/g, '-')}`;
         
         try {
             // Copy to clipboard
