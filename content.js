@@ -8,7 +8,7 @@ function addButton() {
 
     // Create the HTML button
     const htmlButton = document.createElement('button');
-    htmlButton.textContent = 'Link';
+    htmlButton.textContent = '🔗';
     htmlButton.style.marginLeft = '10px';
     htmlButton.style.padding = '10px 20px';
     htmlButton.style.backgroundColor = '#4CAF50';
@@ -99,11 +99,11 @@ function addButton() {
             await navigator.clipboard.writeText(html);
             
             // Update button text to show success icon
-            htmlButton.textContent = '✓ Link';
+            htmlButton.textContent = '✓';
             
             // Reset button text after 2 seconds
             setTimeout(() => {
-                htmlButton.textContent = 'Link';
+                htmlButton.textContent = '🔗';
             }, 2000);
         } catch (err) {
             console.error('Failed to copy to clipboard:', err);
