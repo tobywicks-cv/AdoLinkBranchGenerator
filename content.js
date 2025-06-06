@@ -36,7 +36,7 @@ function addButton() {
     
     // Create tooltip using Azure DevOps native styling
     const tooltip = document.createElement('div');
-    tooltip.className = 'bolt-tooltip bolt-callout absolute flex-row';
+    tooltip.className = 'bolt-tooltip bolt-callout bolt-callout--dismissable bolt-callout--dismissable--hover bolt-callout--dismissable--hover--below';
     tooltip.id = '__bolt-tooltip-' + Date.now();
     tooltip.role = 'tooltip';
     tooltip.tabIndex = -1;
@@ -53,8 +53,24 @@ function addButton() {
     content.appendChild(tooltipContent);
     tooltip.appendChild(content);
     
-    // Add to body instead of span
+    // Add to body
     document.body.appendChild(tooltip);
+    
+    // Position tooltip above the element
+    const linkRect = htmlSpan.getBoundingClientRect();
+    tooltip.style.position = 'absolute';
+    tooltip.style.left = `${linkRect.left + window.scrollX}px`;
+    tooltip.style.top = `${linkRect.top + window.scrollY - 20}px`;
+    tooltip.style.display = 'none';
+    
+    // Add hover effect
+    htmlSpan.addEventListener('mouseenter', () => {
+        tooltip.style.display = 'block';
+    });
+    
+    htmlSpan.addEventListener('mouseleave', () => {
+        tooltip.style.display = 'none';
+    });
 
     // Add hover effect
     htmlSpan.addEventListener('mouseenter', () => {
