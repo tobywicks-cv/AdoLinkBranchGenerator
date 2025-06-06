@@ -109,23 +109,12 @@ function addButton() {
             // Copy to clipboard
             await navigator.clipboard.writeText(html);
             
-            // Show a temporary success message
-            const successMsg = document.createElement('div');
-            successMsg.textContent = 'HTML copied to clipboard!';
-            successMsg.style.position = 'fixed';
-            successMsg.style.top = '10px';
-            successMsg.style.left = '10px';
-            successMsg.style.backgroundColor = '#4CAF50';
-            successMsg.style.color = 'white';
-            successMsg.style.padding = '10px';
-            successMsg.style.borderRadius = '4px';
-            successMsg.style.zIndex = '9999';
+            // Update button text to show success icon
+            htmlButton.textContent = '✓ Link';
             
-            document.body.appendChild(successMsg);
-            
-            // Remove the message after 2 seconds
+            // Reset button text after 2 seconds
             setTimeout(() => {
-                successMsg.remove();
+                htmlButton.textContent = 'Link';
             }, 2000);
         } catch (err) {
             console.error('Failed to copy to clipboard:', err);
