@@ -40,6 +40,7 @@ function addButton() {
     tooltip.id = '__bolt-tooltip-' + Date.now();
     tooltip.role = 'tooltip';
     tooltip.tabIndex = -1;
+    tooltip.style.display = 'none';
     
     // Create tooltip content
     const content = document.createElement('div');
@@ -82,6 +83,7 @@ function addButton() {
     branchTooltip.id = '__bolt-branch-tooltip-' + Date.now();
     branchTooltip.role = 'tooltip';
     branchTooltip.tabIndex = -1;
+    branchTooltip.style.display = 'none';
     
     // Create branch tooltip content
     const branchContent = document.createElement('div');
