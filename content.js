@@ -9,7 +9,7 @@ function addButton() {
     // Create the HTML span
     const htmlSpan = document.createElement('span');
     htmlSpan.textContent = '🔗';
-    htmlSpan.style.marginLeft = '10px';
+    htmlSpan.style.marginLeft = '4px';
     htmlSpan.style.padding = '4px 8px';
     htmlSpan.style.height = '1.2em';
     htmlSpan.style.lineHeight = '1.2em';
@@ -57,7 +57,7 @@ function addButton() {
     // Create the branchname span
     const branchnameSpan = document.createElement('span');
     branchnameSpan.textContent = '📦';
-    branchnameSpan.style.marginLeft = '10px';
+    branchnameSpan.style.marginLeft = '4px';
     branchnameSpan.style.padding = '4px 8px';
     branchnameSpan.style.height = '1.2em';
     branchnameSpan.style.lineHeight = '1.2em';
