@@ -194,11 +194,15 @@ function addButton() {
             branchnameSpan.style.backgroundColor = '#4CAF50';
             branchnameSpan.style.color = '#fff';
             
+            // Update tooltip text
+            branchTooltipContent.textContent = 'Copied!';
+            
             // Reset span text and background after 2 seconds
             setTimeout(() => {
                 branchnameSpan.textContent = '📦';
                 branchnameSpan.style.backgroundColor = 'transparent';
                 branchnameSpan.style.color = '#FFF';
+                branchTooltipContent.textContent = 'Branch Name';
             }, 2000);
         } catch (err) {
             console.error('Failed to copy to clipboard:', err);
@@ -236,11 +240,15 @@ function addButton() {
             htmlSpan.style.backgroundColor = '#4CAF50';
             htmlSpan.style.color = '#fff';
             
+            // Update tooltip text
+            tooltipContent.textContent = 'Copied!';
+            
             // Reset span text and background after 2 seconds
             setTimeout(() => {
                 htmlSpan.textContent = '🔗';
                 htmlSpan.style.backgroundColor = 'transparent';
                 htmlSpan.style.color = '#FFF';
+                tooltipContent.textContent = 'Link';
             }, 2000);
         } catch (err) {
             console.error('Failed to copy to clipboard:', err);
