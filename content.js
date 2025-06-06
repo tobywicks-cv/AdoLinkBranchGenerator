@@ -1,10 +1,23 @@
 function addButton() {
-    // Find the target element
-    const targetElement = document.querySelector('a.bolt-link.no-underline-link[href*="/_workitems/edit/"]');
+    // Find the target element within bolt-dialog-root
+    const dialogRoot = document.querySelector('.bolt-dialog-root');
+    let targetElement = null;
+    
+    if (dialogRoot) {
+        targetElement = dialogRoot.querySelector('a.bolt-link.no-underline-link[href*="/_workitems/edit/"]');
+    }
+    
+    // Fallback to current behavior if not found
+    if (!targetElement) {
+        targetElement = document.querySelector('a.bolt-link.no-underline-link[href*="/_workitems/edit/"]');
+    }
+    
     if (!targetElement) {
         console.log('Target element not found');
         return;
     }
+
+    // bolt-dialog-root
 
     // Create the HTML span
     const htmlSpan = document.createElement('span');
@@ -83,15 +96,35 @@ function addButton() {
         // Create the full title with work item number
         const title = `${workItemNumber} - ${currentTitle}`.trim() || 'Untitled';
         
-        // Determine prefix based on work item type
-        const isDefect = document.querySelector('span[aria-label="Defect"]') !== null;
-        const isRegression = document.querySelector('span[aria-label="Regression"]') !== null;
-        const isSupport = document.querySelector('span[aria-label="Support"]') !== null;
+        // Determine prefix based on work item type within bolt-dialog-root
+        let isDefect = false, isRegression = false, isSupport = false;
+        
+        if (dialogRoot) {
+            isDefect = dialogRoot.querySelector('span[aria-label="Defect"]') !== null;
+            isRegression = dialogRoot.querySelector('span[aria-label="Regression"]') !== null;
+            isSupport = dialogRoot.querySelector('span[aria-label="Support"]') !== null;
+        }
+        
+        // Fallback to current behavior if not found
+        if (!isDefect && !isRegression && !isSupport) {
+            isDefect = document.querySelector('span[aria-label="Defect"]') !== null;
+            isRegression = document.querySelector('span[aria-label="Regression"]') !== null;
+            isSupport = document.querySelector('span[aria-label="Support"]') !== null;
+        }
         
         const prefix = isSupport ? 'hotfix' : (isDefect || isRegression) ? 'bugfix' : 'feature';
         
-        // Get team name from the input field
-        const teamInput = document.querySelector('input[aria-labelledby="__bolt--Area"]');
+        // Get team name from the input field within bolt-dialog-root
+        let teamInput = null;
+        
+        if (dialogRoot) {
+            teamInput = dialogRoot.querySelector('input[aria-labelledby="__bolt--Area"]');
+        }
+        
+        // Fallback to current behavior if not found
+        if (!teamInput) {
+            teamInput = document.querySelector('input[aria-labelledby="__bolt--Area"]');
+        }
         const teamName = teamInput?.value || '';
         
         // Extract the last part of the path and remove 'Team'
