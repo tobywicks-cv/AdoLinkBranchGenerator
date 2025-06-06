@@ -20,7 +20,7 @@ function addButton() {
 
     // Create the branchname button
     const branchnameButton = document.createElement('button');
-    branchnameButton.textContent = 'Branchname';
+    branchnameButton.textContent = '📦';
     branchnameButton.style.marginLeft = '10px';
     branchnameButton.style.padding = '10px 20px';
     branchnameButton.style.backgroundColor = '#FF9800';
@@ -65,11 +65,11 @@ function addButton() {
             await navigator.clipboard.writeText(branchName);
             
             // Update button text to show success icon
-            branchnameButton.textContent = '✓ Branchname';
+            branchnameButton.textContent = '✓';
             
             // Reset button text after 2 seconds
             setTimeout(() => {
-                branchnameButton.textContent = 'Branchname';
+                branchnameButton.textContent = '📦';
             }, 2000);
         } catch (err) {
             console.error('Failed to copy to clipboard:', err);
