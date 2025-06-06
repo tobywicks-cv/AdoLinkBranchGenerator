@@ -19,8 +19,40 @@ function addButton() {
     button.style.boxShadow = '0 2px 4px rgba(0,0,0,0.2)';
 
     // Add click handler
-    button.addEventListener('click', () => {
-        alert('Button clicked!');
+    button.addEventListener('click', async () => {
+        // Get the title from the input field
+        const titleInput = document.querySelector('input[aria-label="Title field"]');
+        const title = titleInput?.value || 'Untitled';
+        
+        // Create the HTML code
+        const html = `<a href="${targetElement.href}" style="color:#0078D7;text-decoration:none;margin-left:10px;display:inline-block;padding:5px 10px;border-radius:4px;background-color:#f4f4f4">${title}</a>`;
+        
+        try {
+            // Copy to clipboard
+            await navigator.clipboard.writeText(html);
+            
+            // Show a temporary success message
+            const successMsg = document.createElement('div');
+            successMsg.textContent = 'HTML copied to clipboard!';
+            successMsg.style.position = 'fixed';
+            successMsg.style.top = '10px';
+            successMsg.style.left = '10px';
+            successMsg.style.backgroundColor = '#4CAF50';
+            successMsg.style.color = 'white';
+            successMsg.style.padding = '10px';
+            successMsg.style.borderRadius = '4px';
+            successMsg.style.zIndex = '9999';
+            
+            document.body.appendChild(successMsg);
+            
+            // Remove the message after 2 seconds
+            setTimeout(() => {
+                successMsg.remove();
+            }, 2000);
+        } catch (err) {
+            console.error('Failed to copy to clipboard:', err);
+            alert('Failed to copy HTML to clipboard');
+        }
     });
 
     // Add the button after the target element
