@@ -64,23 +64,12 @@ function addButton() {
             // Copy to clipboard
             await navigator.clipboard.writeText(branchName);
             
-            // Show success message
-            const successMsg = document.createElement('div');
-            successMsg.textContent = 'Branch name copied to clipboard!';
-            successMsg.style.position = 'fixed';
-            successMsg.style.top = '10px';
-            successMsg.style.left = '10px';
-            successMsg.style.backgroundColor = '#FF9800';
-            successMsg.style.color = 'white';
-            successMsg.style.padding = '10px';
-            successMsg.style.borderRadius = '4px';
-            successMsg.style.zIndex = '9999';
+            // Update button text to show success icon
+            branchnameButton.textContent = '✓ Branchname';
             
-            document.body.appendChild(successMsg);
-            
-            // Remove the message after 2 seconds
+            // Reset button text after 2 seconds
             setTimeout(() => {
-                successMsg.remove();
+                branchnameButton.textContent = 'Branchname';
             }, 2000);
         } catch (err) {
             console.error('Failed to copy to clipboard:', err);
