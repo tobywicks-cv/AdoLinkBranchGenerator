@@ -188,8 +188,13 @@ function addButton() {
         const branchName = `${prefix}/${teamPart.toLowerCase().replace(/[^a-z0-9]+/g, '-')}-${workItemNumber}-${currentTitle.toLowerCase().replace(/[^a-z0-9]+/g, '-')}`;
         
         try {
+            // Create a ClipboardItem with text data type
+            const clipboardItem = new ClipboardItem({
+                'text/plain': new Blob([branchName], { type: 'text/plain' })
+            });
+            
             // Copy to clipboard
-            await navigator.clipboard.writeText(branchName);
+            await navigator.clipboard.write([clipboardItem]);
             
             // Update span text and background to show success
             branchnameSpan.textContent = '✓';
@@ -234,8 +239,13 @@ function addButton() {
         const html = `<a href="${targetElement.href}">${title}</a>`;
         
         try {
+            // Create a ClipboardItem with HTML data type
+            const clipboardItem = new ClipboardItem({
+                'text/html': new Blob([html], { type: 'text/html' })
+            });
+            
             // Copy to clipboard
-            await navigator.clipboard.writeText(html);
+            await navigator.clipboard.write([clipboardItem]);
             
             // Update span text and background to show success
             htmlSpan.textContent = '✓';
