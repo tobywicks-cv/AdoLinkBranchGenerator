@@ -13,3 +13,9 @@ Testing
     b. Box icon will generate a branch name (as per company conventions) using the work item type, team name, work item ID and description.
         Branch name convention: advantiveadmin.sharepoint.com/:w:/r/sites/Development/_layouts/15/Doc.aspx?sourcedoc=%7BC3B98D90-BED1-44F2-8FDF-0825D53F30D4%7D&file=Repo%20and%20Branch%20Setup.docx
         e.g. https://dev.azure.com/advantive-devops/Advantive/_workitems/edit/788341 -> feature/commerce-vision-platform-788341-devops-powershell-build-fail
+
+Build
+=====
+1. Chrome > chrome://extensions/ > Pack extension
+    1. Extension root directory = `src` folder
+    2. Private key = `Azure DevOps Link Branch Generator.pem`
