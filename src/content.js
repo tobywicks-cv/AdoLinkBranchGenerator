@@ -188,8 +188,9 @@ function addButton() {
         const branchName = `${prefix}/${teamPart.toLowerCase().replace(/[^a-z0-9]+/g, '-')}-${workItemNumber}-${currentTitle.toLowerCase().replace(/[^a-z0-9]+/g, '-')}`;
         
         try {
-            // Create a ClipboardItem with text data type
+            // Create a ClipboardItem with both HTML and plain text formats
             const clipboardItem = new ClipboardItem({
+                'text/html': new Blob([`<code>${branchName}</code>`], { type: 'text/html' }),
                 'text/plain': new Blob([branchName], { type: 'text/plain' })
             });
             
@@ -239,9 +240,10 @@ function addButton() {
         const html = `<a href="${targetElement.href}">${title}</a>`;
         
         try {
-            // Create a ClipboardItem with HTML data type
+            // Create a ClipboardItem with both HTML and plain text formats
             const clipboardItem = new ClipboardItem({
-                'text/html': new Blob([html], { type: 'text/html' })
+                'text/html': new Blob([html], { type: 'text/html' }),
+                'text/plain': new Blob([targetElement.href], { type: 'text/plain' })
             });
             
             // Copy to clipboard
