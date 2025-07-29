@@ -190,7 +190,6 @@ function addButton() {
         try {
             // Create a ClipboardItem with both HTML and plain text formats
             const clipboardItem = new ClipboardItem({
-                'text/html': new Blob([`<code>${branchName}</code>`], { type: 'text/html' }),
                 'text/plain': new Blob([branchName], { type: 'text/plain' })
             });
             
@@ -243,7 +242,7 @@ function addButton() {
             // Create a ClipboardItem with both HTML and plain text formats
             const clipboardItem = new ClipboardItem({
                 'text/html': new Blob([html], { type: 'text/html' }),
-                'text/plain': new Blob([targetElement.href], { type: 'text/plain' })
+                'text/plain': new Blob([`[${title}](${targetElement.href})`], { type: 'text/plain' })
             });
             
             // Copy to clipboard
