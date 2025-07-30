@@ -1,4 +1,27 @@
+// Function to remove existing link and branch buttons
+function removeExistingButtons() {
+    // Remove existing buttons by looking for elements with specific characteristics
+    const existingButtons = document.querySelectorAll('span[style*="cursor: pointer"][style*="margin-left"]');
+    existingButtons.forEach(button => {
+        // Check if it's one of our buttons by content
+        if (button.textContent === '🔗' || button.textContent === '📦' || button.textContent === '✓') {
+            button.remove();
+        }
+    });
+    
+    // Also remove any existing tooltips
+    const existingTooltips = document.querySelectorAll('[id^="__bolt-tooltip-"], [id^="__bolt-branch-tooltip-"]');
+    existingTooltips.forEach(tooltip => {
+        tooltip.remove();
+    });
+    
+    console.log('Removed existing buttons and tooltips');
+}
+
 function addButton() {
+    // Remove any existing buttons first
+    removeExistingButtons();
+    
     // Find the target element within bolt-dialog-root
     const dialogRoot = document.querySelector('.bolt-dialog-root');
     let targetElement = null;
@@ -468,6 +491,40 @@ function observeTreegridChanges() {
     });
 }
 
+// Function to observe DOM changes for new bolt-dialog-root elements
+function observeDialogChanges() {
+    const observer = new MutationObserver((mutations) => {
+        mutations.forEach((mutation) => {
+            mutation.addedNodes.forEach((node) => {
+                if (node.nodeType === Node.ELEMENT_NODE) {
+                    // Check if the added node is a bolt-dialog-root or contains one
+                    if (node.classList && node.classList.contains('bolt-dialog-root')) {
+                        console.log('bolt-dialog-root detected, adding buttons');
+                        // Add a small delay to ensure the dialog content is fully loaded
+                        setTimeout(() => {
+                            addButton();
+                        }, 500);
+                    } else if (node.querySelector && node.querySelector('.bolt-dialog-root')) {
+                        console.log('Element containing bolt-dialog-root detected, adding buttons');
+                        // Add a small delay to ensure the dialog content is fully loaded
+                        setTimeout(() => {
+                            addButton();
+                        }, 500);
+                    }
+                }
+            });
+        });
+    });
+
+    // Start observing
+    observer.observe(document.body, {
+        childList: true,
+        subtree: true
+    });
+
+    console.log('Dialog observer started');
+}
+
 // Wait for DOM to be fully loaded and add a small delay to ensure the element is loaded
 if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', () => {
@@ -476,6 +533,7 @@ if (document.readyState === 'loading') {
             addButton(); // For individual ticket view
             setupTreegridHover(); // For ticket list view
             observeTreegridChanges(); // Watch for dynamic content
+            observeDialogChanges(); // Watch for bolt-dialog-root elements
         }, 1000);
     });
 } else {
@@ -484,5 +542,6 @@ if (document.readyState === 'loading') {
         addButton(); // For individual ticket view
         setupTreegridHover(); // For ticket list view
         observeTreegridChanges(); // Watch for dynamic content
+        observeDialogChanges(); // Watch for bolt-dialog-root elements
     }, 1000);
 }
